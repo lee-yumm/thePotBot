@@ -5,5 +5,5 @@ Final Robotics Source Folder
 
 The folders shown here were used in the source folder of thepotbot's workspace.
 
-DiffDrive and Serial folders were copied from <a href="https://github.com/joshnewans" target="_blank">josh newans</a> repo for driving robot and setting up communications between Arduino Uno and Raspberry Pi.
+DiffDrive and Serial folders were copied from <a href="https://github.com/joshnewans" target="blank">josh newans</a> repo for driving robot and setting up communications between Arduino Uno and Raspberry Pi.
 
