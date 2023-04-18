@@ -7,3 +7,6 @@ The folders shown here were used in the source folder of thepotbot's workspace.
 
 DiffDrive and Serial folders were copied from <a href="https://github.com/joshnewans" target="blank">josh newans</a> repo for driving robot and setting up communications between Arduino Uno and Raspberry Pi.
 
+LdLidar folder refers to the driver for lidar module that can be found <a href="https://github.com/ldrobotSensorTeam/ldlidar_sl_ros2">here</a>.
+
+The pot driver folder contains the driver for the pothole identifying and filling system.  It's an executable python file called "ultrasonic.py", the other ultrasonic python file was an attempt to stop the cmd_vel messages to pause navigation, but to no avail.
