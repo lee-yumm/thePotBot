@@ -9,6 +9,6 @@ DiffDrive and Serial folders were copied from <a href="https://github.com/joshne
 
 LdLidar folder refers to the driver for lidar module that can be found <a href="https://github.com/ldrobotSensorTeam/ldlidar_sl_ros2">here</a>.
 
-The pot driver folder contains the driver for the pothole identifying and filling system.  It's an executable python file called "ultrasonic.py", the other ultrasonic python file was an attempt to stop the cmd_vel messages to pause navigation, but to no avail.
+The pot driver folder contains the driver for the pothole identifying and filling system.  It is an executable python file called "ultrasonic.py" found in the self-titled pot_driver folder.  The other ultrasonic python file was an attempt to stop the cmd_vel messages to pause navigation, but to no avail.
 
 The folder entitled "thepotbot" is the main package of thepotbot workspace.  It contains launch files for running nodes, xacro files for translating physical dimensions, and yaml configuration files for processing those xacro descriptions.
