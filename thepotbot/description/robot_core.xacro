@@ -8,7 +8,7 @@
     <xacro:property name="chassis_width" value="5.5625"/>
     <xacro:property name="chassis_height" value="7.00"/>
     <xacro:property name="chassis_mass" value="3.0"/>
-    <xacro:property name="valve_radius" value="1.75"/>
+    <xacro:property name="valve_radius" value="2.5"/>
     <xacro:property name="wheel_radius" value="8.50"/>
     <xacro:property name="wheel_thickness" value="1.5625"/>
     <xacro:property name="wheel_mass" value="0.5"/>
@@ -74,6 +74,10 @@
         </xacro:inertial_box>
     </link>
 
+    <gazebo reference="chassis">
+        <material>Gazebo/Grey</material>
+    </gazebo>
+
 
     <!-- LEFT WHEEL LINK -->
 
@@ -101,6 +105,11 @@
         </xacro:inertial_cylinder>
     </link>
 
+    
+    <gazebo reference="left_wheel">
+        <material>Gazebo/Green</material>
+    </gazebo>
+
     <!-- RIGHT WHEEL LINK -->
 
     <joint name="right_wheel_joint" type="continuous">
@@ -126,6 +135,10 @@
             <origin xyz="0 0 0" rpy="0 0 0"/>
         </xacro:inertial_cylinder>
     </link>
+    
+    <gazebo reference="right_wheel">
+        <material>Gazebo/Green</material>
+    </gazebo>
 
     <!-- LIDAR LINK -->
 
@@ -143,6 +156,10 @@
             <material name="blue"/>
         </visual>
     </link>
+    
+    <gazebo reference="base_laser">
+        <material>Gazebo/Purple</material>
+    </gazebo>
 
     <!-- VALVE LINK-->
 
@@ -159,7 +176,67 @@
             </geometry>
             <material name="blue"/>
         </visual>
+    </link>    
+
+    <gazebo reference="valve_frame">
+        <material>Gazebo/Blue</material>
+        <mu1 value="0.001"/>
+        <mu2 value="0.001"/>
+    </gazebo>
+
+    <!-- CAMERA LINK -->
+
+    <joint name="camera_joint" type="fixed">
+        <parent link="chassis"/>
+        <child link="camera_link"/>
+        <origin xyz="${ratio*(chassis_length)/2} 0 ${ratio*(chassis_height)/2}" rpy="0 0 0"/>
+    </joint>
+
+    <link name="camera_link">
+        <visual>
+            <geometry>
+                <box size="0.010 0.03 0.03"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
     </link>
+    
+
+    <joint name="camera_optical_joint" type="fixed">
+        <parent link="camera_link"/>
+        <child link="camera_link_optical"/>
+        <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}"/>
+    </joint>
+
+    <link name="camera_link_optical"></link>
+
+
+
+    <gazebo reference="camera_link">
+        <material>Gazebo/Black</material>
+
+        <sensor name="camera" type="camera">
+            <pose> 0 0 0 0 0 0 </pose>
+            <visualize>true</visualize>
+            <update_rate>10</update_rate>
+            <camera>
+                <horizontal_fov>1.089</horizontal_fov>
+                <image>
+                    <format>R8G8B8</format>
+                    <width>640</width>
+                    <height>480</height>
+                </image>
+                <clip>
+                    <near>0.05</near>
+                    <far>8.0</far>
+                </clip>
+            </camera>
+            <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+                <frame_name>camera_link_optical</frame_name>
+            </plugin>
+        </sensor>
+    </gazebo>
+
 <!--
     <joint name="valve_joint" type="revolute">
         <parent link="valve_frame"/>
