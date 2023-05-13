@@ -14,6 +14,10 @@
                 <param name="right_enc_counts_per_rev">14000</param>
             </hardware>
             -->
+
+            <hardware>
+                <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+            </hardware>
             <joint name="left_wheel_joint">
                 <command_interface name="velocity">
                     <param name="min">-5</param>
